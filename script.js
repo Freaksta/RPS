@@ -25,27 +25,42 @@ function playRound() {
   computerPlay();
   playerResult = playerResult.toLowerCase();
   computerResult = computerResult.toLowerCase();
-  console.log(playerResult);
-  console.log(computerResult);
   if (computerResult === playerResult) {
-    return "Its a tie, try again";
+    console.log("Its a tie, try again");
   } else if (playerResult === "rock" && computerResult === "paper") {
-    return `You lose, ${computerResult} beats ${playerResult}`;
+    computerScore++;
+    console.log(`You lose, ${computerResult} beats ${playerResult}`);
   } else if (playerResult === "rock" && computerResult === "scissors") {
-    return `You win, ${playerResult} beats ${computerResult}`;
+    playerScore++;
+    console.log(`You win, ${playerResult} beats ${computerResult}`);
   } else if (playerResult === "paper" && computerResult === "scissors") {
-    return `You lose, ${computerResult} beats ${playerResult}`;
+    computerScore++;
+    console.log(`You lose, ${computerResult} beats ${playerResult}`);
   } else if (playerResult === "paper" && computerResult === "rock") {
-    return `You win, ${playerResult} beats ${computerResult}`;
+    playerScore++;
+    console.log(`You win, ${playerResult} beats ${computerResult}`);
   } else if (playerResult === "scissors" && computerResult === "rock") {
-    return `You lose, ${computerResult} beats ${playerResult}`;
+    computerScore++;
+    console.log(`You lose, ${computerResult} beats ${playerResult}`);
   } else if (playerResult === "scissors" && computerResult === "paper") {
-    return `You win, ${playerResult} beats ${computerResult}`;
+    playerScore++;
+    console.log(`You win, ${playerResult} beats ${computerResult}`);
   }
 }
 
-// Compare the variable again the computerPlay variable
-// If player input = Rock and computer = Scissors, player wins
-// if player input = computer input tie
-// if player input = Scissors and computer = paper, player wins
-// if play input = Paper and computer = rock, player wins
+function game() {
+  computerScore = 0;
+  playerScore = 0;
+  playRound();
+  playRound();
+  playRound();
+  playRound();
+  playRound();
+  if (computerScore < playerScore) {
+    return `You win by ${playerScore - computerScore}!`;
+  } else if (computerScore === playerScore) {
+    return `Its a tie - battle again!`;
+  } else {
+    return `You lose by ${computerScore - playerScore}!`;
+  }
+}
